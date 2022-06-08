@@ -83,13 +83,13 @@ import org.springframework.util.StringUtils;
  * @author Eduardo Macarrón
  */
 @org.springframework.context.annotation.Configuration
-//当在classpath下找到SqlSessionFactory SqlSessionFactoryBean类才会构建当前bean
+// 当在classpath下找到SqlSessionFactory SqlSessionFactoryBean类才会构建当前bean
 @ConditionalOnClass({ SqlSessionFactory.class, SqlSessionFactoryBean.class })
-//表示当指定Bean在容器中只有一个，或者虽然有多个但是指定首选Bean。
+// 表示当指定Bean在容器中只有一个，或者虽然有多个但是指定首选Bean。
 @ConditionalOnSingleCandidate(DataSource.class)
-//使 @ConfigurationProperties 注解生效,并且将组件加入 IOC 容器中
+// 使 @ConfigurationProperties 注解生效,并且将组件加入 IOC 容器中
 @EnableConfigurationProperties(MybatisProperties.class)
-//在DataSourceAutoConfiguration  MybatisLanguageDriverAutoConfiguration 配置类之后执行
+// 在DataSourceAutoConfiguration MybatisLanguageDriverAutoConfiguration 配置类之后执行
 @AutoConfigureAfter({ DataSourceAutoConfiguration.class, MybatisLanguageDriverAutoConfiguration.class })
 public class MybatisAutoConfiguration implements InitializingBean {
 
@@ -140,7 +140,7 @@ public class MybatisAutoConfiguration implements InitializingBean {
   }
 
   @Bean
-  @ConditionalOnMissingBean //类SqlSessionFactory 不存在时执行
+  @ConditionalOnMissingBean // 类SqlSessionFactory 不存在时执行
   public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
     SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
     factory.setDataSource(dataSource);
